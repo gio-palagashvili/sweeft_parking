@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// enum VehicleType {
+//   SEDAN
+//   COUPE
+//   SUV
+//   TRUCK
+// }
+
+enum roleType {
+  ADMIN
+  USER
+}
+
+model User {
+  id                Int              @id @default(autoincrement())
+  email             String           @unique
+  password          String
+  balance           Decimal          @default(100.00) @db.Decimal(65, 2)
+  resetToken        String?
+  resetTokenExpDate DateTime?
+  role              roleType         @default(USER)
+  vehicles          Vehicle[]
+  parkingHistory    parkingHistory[]
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+}
+
+model Vehicle {
+  id             Int              @id @default(autoincrement())
+  name           String
+  licensePlate   String           @unique
+  type           String
+  userId         Int
+  user           User             @relation(fields: [userId], references: [id])
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  parkingHistory parkingHistory[]
+}
+
+model parkingZone {
+  id             Int              @id @default(autoincrement())
+  name           String           @unique
+  address        String
+  hourlyCost     Decimal          @db.Decimal(65, 2)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  parkingHistory parkingHistory[]
+}
+
+model parkingHistory {
+  id            Int         @id @default(autoincrement())
+  startTime     DateTime    @default(now())
+  endTime       DateTime?
+  amountPaid    Decimal?    @db.Decimal(65, 2)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  user          User        @relation(fields: [userId], references: [id])
+  userId        Int
+  vehicle       Vehicle     @relation(fields: [vehicleId], references: [id])
+  vehicleId     Int
+  parkingZone   parkingZone @relation(fields: [parkingZoneId], references: [id])
+  parkingZoneId Int
+}

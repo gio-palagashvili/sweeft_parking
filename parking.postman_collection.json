@@ -1,0 +1,449 @@
+{
+  "info": {
+    "_postman_id": "7caf76bd-ed71-4f7d-b706-56021cb8acba",
+    "name": "parking",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "15628746"
+  },
+  "item": [
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "parking",
+          "item": [
+            {
+              "name": "start parking",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"vehicleId\" : \"10\",\n    \"parkingZoneId\" : \"2\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5500/parking/start",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "5500",
+                  "path": ["parking", "start"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "end parking",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"vehicleId\" : \"10\",\n    \"parkingZoneId\" : \"2\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5500/parking/end",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "5500",
+                  "path": ["parking", "end"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "get user parking history",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5500/user/history",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "5500",
+                  "path": ["user", "history"]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "vehicle",
+          "item": [
+            {
+              "name": "create",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\" : \"main\",\n    \"licensePlate\" : \"pl-016-ga\",\n    \"type\" : \"suv\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5500/vehicle/create",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "5500",
+                  "path": ["vehicle", "create"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "delete vehicle",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"licensePlate\" : \"md-983-mm\" \n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5500/vehicle/delete",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "5500",
+                  "path": ["vehicle", "delete"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "update vehicle",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n        \"name\": \"maia kad\",\n        \"type\": \"suv\",\n        \"licensePlate\": \"md-983-mm\",\n        \"createdAt\" :\"0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5500/vehicle/1",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "5500",
+                  "path": ["vehicle", "1"]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"password\" : \"123456\",\n    \"email\" : \"girgi1201@gmail.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5500/user/register",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5500",
+              "path": ["user", "register"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"password\" : \"123456\",\n    \"email\" : \"user@gmail.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5500/user/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5500",
+              "path": ["user", "login"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get password reset link",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\":\"girgi1201@gmail.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5500/user/reset",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5500",
+              "path": ["user", "reset"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "reset password",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"password\" : \"123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5500/user/reset/aShEmeZP0K",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5500",
+              "path": ["user", "reset", "aShEmeZP0K"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "admin",
+      "item": [
+        {
+          "name": "parking",
+          "item": [
+            {
+              "name": "create new parking zone",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\" : \"parking 3\",\n    \"address\" : \"saburtalo mall\",\n    \"hourlyCost\" : 10.00\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5500/admin/parking/create",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "5500",
+                  "path": ["admin", "parking", "create"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "delete parking zone",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5500/admin/parking/13",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "5500",
+                  "path": ["admin", "parking", "13"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "update parking zone",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n        \"name\" : \"floor 2\",\n        \"address\" : \"city mall\",\n        \"hourlyCost\" : 10.02\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5500/admin/parking/2",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "5500",
+                  "path": ["admin", "parking", "2"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "get parking zone history",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5500/admin/parking/2/history",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "5500",
+                  "path": ["admin", "parking", "2", "history"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "get zones",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5500/admin/parking/zones",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "5500",
+                  "path": ["admin", "parking", "zones"]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"password\" : \"123456\",\n    \"email\" : \"girgi1201@gmail.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5500/user/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5500",
+              "path": ["user", "login"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create admin",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"password\" : \"123456\",\n    \"email\" : \"girgi1201@gmail.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5500/user/admin",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5500",
+              "path": ["user", "admin"]
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJlbWFpbCI6ImdpcmdpMTIwMUBnbWFpbC5jb20iLCJiYWxhbmNlIjoiMCIsInJvbGUiOiJBRE1JTiIsImNyZWF0ZWRBdCI6IjIwMjMtMDktMjZUMTA6MjM6MDEuMDAwWiJ9LCJpYXQiOjE2OTU4MjE1OTMsImV4cCI6MTY5NjQyNjM5M30.NU_CLVB5V9gJd3yS48QZqkOg1EoMk7y9h7SeFTNodp8",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ]
+}
