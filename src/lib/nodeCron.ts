@@ -3,7 +3,7 @@ import { db } from "../db/db";
 import { endParkingMethod } from "../helpers/parkingHelper";
 import { sendMail } from "./nodemailer";
 
-const job = cron.schedule('* * * * * *', async () => {
+const job = cron.schedule('* * * * *', async () => {
     try {
         const activeParking = await db.parkingHistory.findMany({
             where: {
@@ -25,12 +25,10 @@ const job = cron.schedule('* * * * * *', async () => {
                 }
             },
         });
-
         activeParking.map(async (p) => {
             const minuteCost = (parseInt(p.parkingZone.hourlyCost.toString()) / 60).toFixed(3);
             const newBalance = parseFloat(p.user.balance.toString()) - parseFloat(minuteCost);
             const shouldEnd = newBalance <= 0;
-
 
             await db.user.update({
                 data: {

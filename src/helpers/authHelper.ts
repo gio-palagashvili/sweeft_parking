@@ -20,7 +20,7 @@ export const comparePass = async (password: string, hashedPassword: string) => {
     }
 }
 
-export const signJWT = async (payload: IJwtPayload, exp: string = process.env.JWT_EXP || '1d') => {
+export const signJWT = async (payload: IJwtPayload, exp: string = process.env.JWT_EXP || '1d',) => {
     const secret = process.env.JWT_KEY as string;
 
     if (!secret) throw new Error("jwt secret missing in env");

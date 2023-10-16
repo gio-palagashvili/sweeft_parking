@@ -20,4 +20,5 @@ router.post("/end",
     handleValidationErrors,
     endParking
 );
+
 export default router

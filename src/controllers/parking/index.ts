@@ -8,18 +8,25 @@ import { endParkingMethod } from "../../helpers/parkingHelper";
 export const startParking = async (req: IRequest, res: Response) => {
     const { parkingZoneId, vehicleId } = req.body;
     try {
-        const verify = await db.parkingHistory.count({
-            where: {
-                parkingZoneId: parseInt(parkingZoneId),
-                vehicleId: parseInt(vehicleId),
-                userId: req.user.id,
-                endTime: null
-            }
-        });
+        const [verify, user] = await db.$transaction([
+            db.parkingHistory.count({
+                where: {
+                    parkingZoneId: parseInt(parkingZoneId),
+                    vehicleId: parseInt(vehicleId),
+                    userId: req.user.id,
+                    endTime: null
+                },
+            }),
+            db.user.findFirst({
+                where: {
+                    id: req.user.id,
+                    balance: { gt: 0 }
+                }
+            }),
+        ])
 
-        if (verify > 0) {
-            return res.status(400).json({ message: 'end current parking to start a new one' });
-        }
+        if (verify > 0) return res.status(400).json({ message: 'end current parking to start a new one' });
+        if (!user) return res.status(404).json({ message: "can't start the parking due to insufficient balance" })
 
         const verifyOwner = await db.vehicle.count({
             where: {
